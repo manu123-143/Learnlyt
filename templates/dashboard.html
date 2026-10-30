@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Overview · LearnLyt{% endblock %}
+{% block heading %}Learning overview{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="pill">✦ SCIENCE-BACKED REVISION</span>
+        <h2>Turn today’s learning into long-term memory.</h2>
+        <p>LearnLyt finds what you are about to forget and schedules each flashcard at the right time.</p>
+        <div class="button-row"><a class="button button-primary" href="{{ url_for('review') }}">Review {{ stats.due_today }} due cards</a><a class="button button-secondary" href="{{ url_for('new_topic') }}">Add a topic</a></div>
+    </div>
+    <div class="memory-orbit" aria-hidden="true"><div class="orbit one"></div><div class="orbit two"></div><span>🧠</span><i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i></div>
+</section>
+
+<section class="metric-grid">
+    <article class="metric"><span class="metric-icon purple">▤</span><div><small>TOPICS</small><strong>{{ stats.topics }}</strong><em>Across {{ stats.subjects }} subjects</em></div></article>
+    <article class="metric"><span class="metric-icon blue">▣</span><div><small>FLASHCARDS</small><strong>{{ stats.flashcards }}</strong><em>Knowledge prompts</em></div></article>
+    <article class="metric"><span class="metric-icon orange">↻</span><div><small>DUE TODAY</small><strong>{{ stats.due_today }}</strong><em>{{ stats.reviewed_today }} reviewed today</em></div></article>
+    <article class="metric"><span class="metric-icon green">◎</span><div><small>RETENTION</small><strong>{{ stats.retention }}%</strong><em>Overall recall rate</em></div></article>
+</section>
+
+{% if stats.subjects == 0 %}
+<section class="empty-welcome panel">
+    <div class="empty-art">✦</div><div><span class="eyebrow">QUICK START</span><h2>Your learning space is ready</h2><p>Create your own subject or load fictional demo data to experience the complete review workflow immediately.</p><div class="button-row"><a class="button button-primary" href="{{ url_for('new_subject') }}">Create first subject</a><form method="post" action="{{ url_for('load_demo') }}"><button class="button button-secondary">Load demo data</button></form></div></div>
+</section>
+{% else %}
+<section class="content-grid">
+    <article class="panel span-two">
+        <div class="panel-heading"><div><span class="eyebrow">YOUR COURSES</span><h2>Subject performance</h2></div><a href="{{ url_for('library') }}">View library →</a></div>
+        <div class="subject-list">
+        {% for subject in subjects %}
+            <a class="subject-row" href="{{ url_for('subject_detail', subject_id=subject.id) }}">
+                <span class="subject-dot" style="background:{{ subject.color }}"></span><div><strong>{{ subject.name }}</strong><small>{{ subject.topic_count }} topics · {{ subject.card_count }} cards</small></div><div class="progress-cell"><span>{{ subject.retention }}%</span><div class="progress"><i style="width:{{ subject.retention }}%;background:{{ subject.color }}"></i></div></div><b>›</b>
+            </a>
+        {% endfor %}
+        </div>
+    </article>
+    <article class="panel review-card">
+        <span class="eyebrow">TODAY'S QUEUE</span><div class="review-ring"><strong>{{ stats.due_today }}</strong><small>DUE</small></div><h2>Ready for a memory workout?</h2><p>Reviewing now protects these cards from being forgotten.</p><a class="button button-primary full" href="{{ url_for('review') }}">Begin review session</a>
+    </article>
+</section>
+
+<section class="panel recent-panel">
+    <div class="panel-heading"><div><span class="eyebrow">RECENT KNOWLEDGE</span><h2>Latest topics</h2></div><a href="{{ url_for('new_topic') }}">+ Add topic</a></div>
+    <div class="topic-grid">
+    {% for topic in topics %}<a class="topic-card" href="{{ url_for('topic_detail', topic_id=topic.id) }}"><span class="difficulty {{ topic.difficulty|lower }}">{{ topic.difficulty }}</span><h3>{{ topic.title }}</h3><p>{{ topic.subject_name }} · {{ topic.category }}</p><div><span>{{ topic.card_count }} cards</span><strong>{{ topic.retention }}% retained</strong></div></a>{% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

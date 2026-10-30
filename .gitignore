@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+data/*.db
+data/*.db-*
+!data/.gitkeep
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+ENV/
+
+# Test and tool caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local database files
+*.sqlite
+*.sqlite3

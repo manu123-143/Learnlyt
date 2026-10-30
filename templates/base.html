@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LearnLyt knowledge retention and spaced repetition tool">
+    <title>{% block title %}LearnLyt{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-mark">L</span>
+            <span><strong>LearnLyt</strong><small>Remember more</small></span>
+        </a>
+        <nav>
+            <a class="nav-link {% if active_page=='dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}"><span>⌂</span>Overview</a>
+            <a class="nav-link {% if active_page=='library' %}active{% endif %}" href="{{ url_for('library') }}"><span>▤</span>Knowledge Library</a>
+            <a class="nav-link {% if active_page=='review' %}active{% endif %}" href="{{ url_for('review') }}"><span>↻</span>Review Session</a>
+            <a class="nav-link {% if active_page=='reports' %}active{% endif %}" href="{{ url_for('reports') }}"><span>⌁</span>Progress Reports</a>
+            <a class="nav-link {% if active_page=='backup' %}active{% endif %}" href="{{ url_for('backup') }}"><span>⇅</span>JSON Backup</a>
+        </nav>
+        <div class="sidebar-tip">
+            <span>✦</span><div><strong>Retention tip</strong><small>Short daily reviews beat long weekly sessions.</small></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="menu-button" id="menuButton">☰</button>
+            <div><span class="eyebrow">KNOWLEDGE RETENTION WORKSPACE</span><h1>{% block heading %}Overview{% endblock %}</h1></div>
+            <a class="button button-primary top-action" href="{{ url_for('review') }}">Start review →</a>
+        </header>
+
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}<div class="flash-stack">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}<button>×</button></div>{% endfor %}</div>{% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

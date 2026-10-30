@@ -1,0 +1,130 @@
+{
+  "format": "LearnLyt Backup",
+  "version": 1,
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Cybersecurity",
+      "description": "Core concepts in protecting systems, networks and data.",
+      "color": "#6C5CE7"
+    },
+    {
+      "id": 2,
+      "name": "Artificial Intelligence",
+      "description": "Foundations of intelligent systems and machine learning.",
+      "color": "#3F8CFF"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "subject_id": 1,
+      "title": "Cryptography Fundamentals",
+      "category": "Cryptography",
+      "difficulty": "Medium",
+      "notes": "Cryptography protects information using mathematical transformations. Symmetric systems share one key, while asymmetric systems use a public and private key pair."
+    },
+    {
+      "id": 2,
+      "subject_id": 1,
+      "title": "Network Security",
+      "category": "Networks",
+      "difficulty": "Hard",
+      "notes": "Network security combines access control, monitoring, segmentation, encryption and incident response."
+    },
+    {
+      "id": 3,
+      "subject_id": 2,
+      "title": "Machine Learning Basics",
+      "category": "Machine Learning",
+      "difficulty": "Easy",
+      "notes": "Machine learning systems learn patterns from examples instead of relying only on explicitly programmed rules."
+    }
+  ],
+  "flashcards": [
+    {
+      "id": 1,
+      "topic_id": 1,
+      "question": "What is symmetric encryption?",
+      "answer": "Encryption in which the same secret key is used to encrypt and decrypt data.",
+      "ease_factor": 2.5,
+      "interval_days": 0,
+      "repetitions": 0,
+      "next_review": "2026-01-01",
+      "last_reviewed": null,
+      "correct_count": 0,
+      "incorrect_count": 0
+    },
+    {
+      "id": 2,
+      "topic_id": 1,
+      "question": "What does a cryptographic hash function produce?",
+      "answer": "A fixed-length digest derived from input data.",
+      "ease_factor": 2.5,
+      "interval_days": 1,
+      "repetitions": 1,
+      "next_review": "2026-01-01",
+      "last_reviewed": "2026-01-01 10:00:00",
+      "correct_count": 3,
+      "incorrect_count": 1
+    },
+    {
+      "id": 3,
+      "topic_id": 2,
+      "question": "What is the main purpose of a firewall?",
+      "answer": "To allow or block network traffic according to security rules.",
+      "ease_factor": 2.5,
+      "interval_days": 0,
+      "repetitions": 0,
+      "next_review": "2026-01-01",
+      "last_reviewed": null,
+      "correct_count": 0,
+      "incorrect_count": 0
+    },
+    {
+      "id": 4,
+      "topic_id": 2,
+      "question": "What is network segmentation?",
+      "answer": "Dividing a network into smaller isolated sections to reduce access and limit attacks.",
+      "ease_factor": 2.3,
+      "interval_days": 1,
+      "repetitions": 0,
+      "next_review": "2026-01-01",
+      "last_reviewed": "2026-01-02 10:00:00",
+      "correct_count": 1,
+      "incorrect_count": 2
+    },
+    {
+      "id": 5,
+      "topic_id": 3,
+      "question": "What is supervised learning?",
+      "answer": "Learning a mapping from inputs to known labelled outputs using example data.",
+      "ease_factor": 2.5,
+      "interval_days": 0,
+      "repetitions": 0,
+      "next_review": "2026-01-01",
+      "last_reviewed": null,
+      "correct_count": 0,
+      "incorrect_count": 0
+    },
+    {
+      "id": 6,
+      "topic_id": 3,
+      "question": "What is overfitting?",
+      "answer": "When a model learns training data too closely and performs poorly on new data.",
+      "ease_factor": 2.5,
+      "interval_days": 6,
+      "repetitions": 2,
+      "next_review": "2026-01-01",
+      "last_reviewed": "2026-01-03 10:00:00",
+      "correct_count": 4,
+      "incorrect_count": 1
+    }
+  ],
+  "review_history": [
+    {"id": 1, "flashcard_id": 2, "quality": 4, "remembered": 1, "reviewed_at": "2026-01-01 10:00:00"},
+    {"id": 2, "flashcard_id": 2, "quality": 5, "remembered": 1, "reviewed_at": "2026-01-02 10:00:00"},
+    {"id": 3, "flashcard_id": 4, "quality": 1, "remembered": 0, "reviewed_at": "2026-01-02 10:10:00"},
+    {"id": 4, "flashcard_id": 6, "quality": 4, "remembered": 1, "reviewed_at": "2026-01-03 10:00:00"}
+  ]
+}

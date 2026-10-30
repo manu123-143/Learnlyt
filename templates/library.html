@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Library · LearnLyt{% endblock %}
+{% block heading %}Knowledge library{% endblock %}
+{% block content %}
+<section class="page-actions"><div><h2>Organize everything you learn</h2><p>Subjects contain topics, and topics contain revision flashcards.</p></div><div class="button-row"><a class="button button-secondary" href="{{ url_for('new_subject') }}">+ Subject</a><a class="button button-primary" href="{{ url_for('new_topic') }}">+ Topic</a></div></section>
+
+<section class="subject-strip">
+{% for subject in subjects %}<a class="subject-mini" href="{{ url_for('subject_detail',subject_id=subject.id) }}"><span style="background:{{ subject.color }}">{{ subject.name[:1]|upper }}</span><div><strong>{{ subject.name }}</strong><small>{{ subject.topic_count }} topics · {{ subject.due_count }} due</small></div></a>{% else %}<p>No subjects yet.</p>{% endfor %}
+</section>
+
+<section class="panel">
+    <form class="filter-bar" method="get"><input name="search" value="{{ search }}" placeholder="Search topics or notes…"><select name="subject_id"><option value="">All subjects</option>{% for s in subjects %}<option value="{{ s.id }}" {% if selected_subject==s.id %}selected{% endif %}>{{ s.name }}</option>{% endfor %}</select><select name="category"><option value="">All categories</option>{% for c in categories %}<option {% if selected_category==c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select><select name="difficulty"><option value="">All levels</option>{% for d in ['Easy','Medium','Hard'] %}<option {% if selected_difficulty==d %}selected{% endif %}>{{ d }}</option>{% endfor %}</select><button class="button button-secondary">Filter</button></form>
+    <div class="topic-grid roomy">
+    {% for topic in topics %}<a class="topic-card" href="{{ url_for('topic_detail',topic_id=topic.id) }}"><div class="topic-accent" style="background:{{ topic.subject_color }}"></div><span class="difficulty {{ topic.difficulty|lower }}">{{ topic.difficulty }}</span><h3>{{ topic.title }}</h3><p>{{ topic.subject_name }} · {{ topic.category }}</p><div><span>{{ topic.card_count }} cards · {{ topic.due_count }} due</span><strong>{{ topic.retention }}%</strong></div></a>{% else %}<div class="empty-state"><span>▤</span><h3>No matching topics</h3><p>Add a topic or change the filters.</p></div>{% endfor %}
+    </div>
+</section>
+{% endblock %}
